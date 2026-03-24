@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_hero/screens/superhero_search_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'SuperHero App',
+      home: SuperheroSearchScreen(),
     );
   }
 }
