@@ -107,7 +107,7 @@ class AppearanceResponse {
   factory AppearanceResponse.fromJson(Map<String, dynamic> json) {
     return AppearanceResponse(
       gender: _castGender(json["gender"]),
-      race: json["race"],
+      race: _castString(json["race"]),
       height: List<String>.from(json["height"]),
       weight: List<String>.from(json["weight"]),
       eyeColor: json["eye-color"],
@@ -118,6 +118,11 @@ class AppearanceResponse {
   static bool? _castGender(String? val) {
     if (val == 'null' || val == null) return null;
     return val.toLowerCase() == 'male';
+  }
+
+  static String _castString(String? val){
+    if(val == 'null' || val == null) return 'unknow';
+    return val;
   }
 }
 
