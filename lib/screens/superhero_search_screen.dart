@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_hero/core/app_colors.dart';
 import 'package:super_hero/data/model/superhero_detail_response.dart';
 import 'package:super_hero/data/model/superhero_response.dart';
 import 'package:super_hero/data/repository.dart';
@@ -19,8 +20,17 @@ class _State extends State<SuperheroSearchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: AppBar(
         title: Text('SuperHero Search'),
+        centerTitle: true,
+        backgroundColor: AppColors.white,
+        shape: Border(
+          bottom: BorderSide(
+            color: AppColors.borderPrimary,
+            width: 1,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 12),
@@ -94,7 +104,7 @@ class _State extends State<SuperheroSearchScreen> {
       onTap: () => Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => SuperheroDetailScreen(superhero: item),
+            builder: (context) => SuperheroDetailScreen(superhero: item),
           )),
       child: Container(
         decoration: BoxDecoration(

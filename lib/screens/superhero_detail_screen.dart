@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:super_hero/core/app_colors.dart';
 import 'package:super_hero/data/model/superhero_detail_response.dart';
 
 class SuperheroDetailScreen extends StatelessWidget {
@@ -9,6 +10,7 @@ class SuperheroDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.background,
       appBar: buildAppBar(),
       body: Scrollbar(
         thumbVisibility: true,
@@ -18,15 +20,18 @@ class SuperheroDetailScreen extends StatelessWidget {
             child: Column(
               children: [
                 buildHeroHeader(),
-                buildPowerStats(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 5),
+                  child: buildPowerStats(),
+                ), // Power Stats
+                Padding(
+                  padding: const EdgeInsets.only(top: 24),
                   child: buildAppearance(),
                 ), // Appearance
                 Padding(
-                  padding: const EdgeInsets.only(top: 16),
+                  padding: const EdgeInsets.only(top: 24),
                   child: buildBiography(),
-                )
+                ) // Biography
               ],
             ),
           ),
@@ -38,9 +43,14 @@ class SuperheroDetailScreen extends StatelessWidget {
   Column buildBiography() {
     return Column(
       children: [
-        Text(
-          'Biography',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+        Container(
+          width: double.infinity,
+          color: AppColors.lightGray,
+          child: Text(
+            'Biography',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+            textAlign: TextAlign.center,
+          ),
         ),
         Table(
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
@@ -65,8 +75,8 @@ class SuperheroDetailScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                  child:
-                      Text('Aliases', style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text('Aliases',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 Padding(
                   padding:
@@ -80,8 +90,8 @@ class SuperheroDetailScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                  child:
-                      Text('Place of Birth', style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text('Place of Birth',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 Padding(
                   padding:
@@ -95,8 +105,8 @@ class SuperheroDetailScreen extends StatelessWidget {
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                  child:
-                      Text('Publisher', style: TextStyle(fontWeight: FontWeight.bold)),
+                  child: Text('Publisher',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
                 ),
                 Padding(
                   padding:
@@ -105,7 +115,6 @@ class SuperheroDetailScreen extends StatelessWidget {
                 ),
               ],
             ),
-
           ],
         ),
       ],
@@ -115,15 +124,20 @@ class SuperheroDetailScreen extends StatelessWidget {
   Column buildAppearance() {
     return Column(
       children: [
-        Text(
-          'Appearance',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+        Container(
+          width: double.infinity,
+          color: AppColors.lightGray,
+          child: Text(
+            'Appearance',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+            textAlign: TextAlign.center,
+          ),
         ),
         Table(
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
             TableRow(
-                decoration: BoxDecoration(color: Colors.blueGrey.shade50),
+                // decoration: BoxDecoration(color: Colors.blueGrey.shade50),
                 children: [
                   Padding(
                     padding:
@@ -224,11 +238,17 @@ class SuperheroDetailScreen extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
-      title: Center(
-        child: Text(
-          superhero.name,
-          style: TextStyle(fontWeight: FontWeight.w400),
-          textAlign: TextAlign.center,
+      title: Text(
+        superhero.name,
+        style: TextStyle(fontWeight: FontWeight.w400),
+        textAlign: TextAlign.center,
+      ),
+      centerTitle: true,
+      backgroundColor: AppColors.white,
+      shape: Border(
+        bottom: BorderSide(
+          color: AppColors.borderPrimary,
+          width: 1,
         ),
       ),
     );
@@ -283,7 +303,10 @@ class SuperheroDetailScreen extends StatelessWidget {
           height: (value == 0.0 ? 5 : value),
           color: color,
         ),
-        Text(label),
+        Text(
+          label,
+          style: TextStyle(fontSize: 12),
+        ),
       ],
     );
   }
