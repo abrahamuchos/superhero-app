@@ -7,6 +7,7 @@ class SuperheroDetailResponse {
   final String? realName;
   final PowerstatsResponse? powerstatsResponse;
   final AppearanceResponse? appearanceResponse;
+  final BiographyResponse biographyResponse;
 
   SuperheroDetailResponse({
     required this.id,
@@ -15,6 +16,7 @@ class SuperheroDetailResponse {
     required this.realName,
     required this.powerstatsResponse,
     required this.appearanceResponse,
+    required this.biographyResponse,
   });
 
   factory SuperheroDetailResponse.fromJson(Map<String, dynamic> json) {
@@ -25,6 +27,7 @@ class SuperheroDetailResponse {
       realName: json["biography"]["full-name"],
       powerstatsResponse: PowerstatsResponse.fromJson(json["powerstats"]),
       appearanceResponse: AppearanceResponse.fromJson(json["appearance"]),
+      biographyResponse: BiographyResponse.fromJson(json["biography"]),
     );
   }
 }
@@ -85,35 +88,58 @@ class AppearanceResponse {
   });
 
   /// Getter to UI gender icon
-  IconData get genderIcon{
-    if(gender == null) return Icons.question_mark;
+  IconData get genderIcon {
+    if (gender == null) return Icons.question_mark;
     return gender! ? Icons.male : Icons.female;
   }
 
   ///Getter to height
   String get heightMetric {
-    if(height.length >= 2) return height[1];
+    if (height.length >= 2) return height[1];
     return height.isNotEmpty ? height[0] : 'N/A';
   }
 
-  String get weightMetric{
-    if(weight.length >= 2) return weight[1];
+  String get weightMetric {
+    if (weight.length >= 2) return weight[1];
     return weight.isNotEmpty ? weight[0] : 'N/A';
- }
+  }
 
   factory AppearanceResponse.fromJson(Map<String, dynamic> json) {
     return AppearanceResponse(
       gender: _castGender(json["gender"]),
       race: json["race"],
-      height: List<String>.from(json["height"]) ,
+      height: List<String>.from(json["height"]),
       weight: List<String>.from(json["weight"]),
       eyeColor: json["eye-color"],
       hairColor: json["hair-color"],
     );
   }
 
-  static bool? _castGender(String? val){
-    if(val == 'null' || val == null) return null;
+  static bool? _castGender(String? val) {
+    if (val == 'null' || val == null) return null;
     return val.toLowerCase() == 'male';
+  }
+}
+
+class BiographyResponse {
+  final String alterEgo;
+  final List<String> aliases;
+  final String placeOfBirth;
+  final String publisher;
+
+  BiographyResponse({
+    required this.alterEgo,
+    required this.aliases,
+    required this.placeOfBirth,
+    required this.publisher,
+  });
+
+  factory BiographyResponse.fromJson(Map<String, dynamic> json) {
+    return BiographyResponse(
+      alterEgo: json['alter-egos'],
+      aliases: List<String>.from(json['aliases']),
+      placeOfBirth: json['place-of-birth'],
+      publisher: json['publisher'],
+    );
   }
 }

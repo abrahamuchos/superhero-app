@@ -22,7 +22,11 @@ class SuperheroDetailScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(top: 16),
                   child: buildAppearance(),
-                ),
+                ), // Appearance
+                Padding(
+                  padding: const EdgeInsets.only(top: 16),
+                  child: buildBiography(),
+                )
               ],
             ),
           ),
@@ -31,30 +35,113 @@ class SuperheroDetailScreen extends StatelessWidget {
     );
   }
 
+  Column buildBiography() {
+    return Column(
+      children: [
+        Text(
+          'Biography',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+        ),
+        Table(
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          children: [
+            TableRow(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                  child: Text('Alter Ego',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                  child: Text(superhero.biographyResponse.alterEgo),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                  child:
+                      Text('Aliases', style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                  child: Text(superhero.biographyResponse.aliases.join(', ')),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                  child:
+                      Text('Place of Birth', style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                  child: Text(superhero.biographyResponse.placeOfBirth),
+                ),
+              ],
+            ),
+            TableRow(
+              children: [
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                  child:
+                      Text('Publisher', style: TextStyle(fontWeight: FontWeight.bold)),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                  child: Text(superhero.biographyResponse.publisher),
+                ),
+              ],
+            ),
+
+          ],
+        ),
+      ],
+    );
+  }
+
   Column buildAppearance() {
     return Column(
       children: [
         Text(
           'Appearance',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w400),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
         ),
         Table(
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           children: [
+            TableRow(
+                decoration: BoxDecoration(color: Colors.blueGrey.shade50),
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                    child: Text('Gender',
+                        style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
+                    child: Icon(superhero.appearanceResponse?.genderIcon),
+                  ),
+                ]),
             TableRow(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Text('Gender', style: TextStyle(fontWeight: FontWeight.bold)),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Icon(superhero.appearanceResponse?.genderIcon),
-              ),
-            ]),
-            TableRow(children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Text('Race', style: TextStyle(fontWeight: FontWeight.bold)),
+                child:
+                    Text('Race', style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
@@ -64,27 +151,32 @@ class SuperheroDetailScreen extends StatelessWidget {
             TableRow(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Text('Height', style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text('Height',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Text(superhero.appearanceResponse?.heightMetric ?? 'N/A'),
+                child:
+                    Text(superhero.appearanceResponse?.heightMetric ?? 'N/A'),
               )
             ]),
             TableRow(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Text('Weight', style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text('Weight',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Text(superhero.appearanceResponse?.weightMetric ?? 'N/A'),
+                child:
+                    Text(superhero.appearanceResponse?.weightMetric ?? 'N/A'),
               )
             ]),
             TableRow(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Text('Eye Color', style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text('Eye Color',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
@@ -94,7 +186,8 @@ class SuperheroDetailScreen extends StatelessWidget {
             TableRow(children: [
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
-                child: Text('Hair Color', style: TextStyle(fontWeight: FontWeight.bold)),
+                child: Text('Hair Color',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 7, horizontal: 5),
