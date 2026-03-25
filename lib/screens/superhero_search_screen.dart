@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:super_hero/data/model/superhero_detail_response.dart';
 import 'package:super_hero/data/model/superhero_response.dart';
 import 'package:super_hero/data/repository.dart';
+import 'package:super_hero/screens/superhero_detail_screen.dart';
 
 class SuperheroSearchScreen extends StatefulWidget {
   const SuperheroSearchScreen({super.key});
@@ -57,7 +58,7 @@ class _State extends State<SuperheroSearchScreen> {
     return FutureBuilder(
       future: _superHeroInfo,
       builder: (context, snapshot) {
-        if(_isTextEmpty) return Center(child: Text("Introduce un nombre"));
+        if (_isTextEmpty) return Center(child: Text("Introduce un nombre"));
 
         if (snapshot.connectionState == ConnectionState.waiting) {
           return CircularProgressIndicator();
@@ -88,33 +89,40 @@ class _State extends State<SuperheroSearchScreen> {
   }
 
   /// Item Card to SuperHero
-  Container itemSuperHero(SuperheroDetailResponse item) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        color: Colors.blueGrey,
-      ),
-      child: Column(
-        children: [
-          Image.network(
-            item.url,
-            height: 290,
-            width: double.infinity,
-            fit: BoxFit.fitWidth,
-            alignment: Alignment(0, -0.6),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 5),
-            child: Text(
-              item.name,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.w300,
-                color: Colors.white,
+  GestureDetector itemSuperHero(SuperheroDetailResponse item) {
+    return GestureDetector(
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => SuperheroDetailScreen(superhero: item),
+          )),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16),
+          color: Colors.blueGrey,
+        ),
+        child: Column(
+          children: [
+            Image.network(
+              item.url,
+              height: 290,
+              width: double.infinity,
+              fit: BoxFit.fitWidth,
+              alignment: Alignment(0, -0.6),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 5, bottom: 5),
+              child: Text(
+                item.name,
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.w300,
+                  color: Colors.white,
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
